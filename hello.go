@@ -70,11 +70,11 @@ func lerComando() int {
 
 func iniciarMonitoramento() {
 	fmt.Println("Monitorando...")
-	var sites [4]string
-	sites[0] = "https://www.alura.com.br"
-	sites[1] = "https://www.alura.com.br"
-	sites[2] = "https://www.caelum.com.br"
-	sites[3] = "https://www.alura.com.br"
+	sites := []string{"https://www.alura.com.br", "https://www.caelum.com.br", "https://topflix.cx"}
+
+	for i, site := range sites {
+		fmt.Println("Estou passando na posição", i, "o site", site)
+	}
 
 	fmt.Println(sites)
 
@@ -89,8 +89,8 @@ func iniciarMonitoramento() {
 
 }
 
-func exibeNomes() {
-	nomes := []string{"Douglas", "Robert", "John", "Ethan"}
-	nomes = append(nomes, "Joseph")
-	fmt.Println(nomes)
-}
+// func exibeNomes() {
+// 	nomes := []string{"Douglas", "Robert", "John", "Ethan"}
+// 	nomes = append(nomes, "Joseph")
+// 	fmt.Println(nomes)
+// }
