@@ -8,7 +8,6 @@ import (
 )
 
 func main() {
-
 	exibeIntroducao()
 
 	for {
@@ -88,4 +87,10 @@ func iniciarMonitoramento() {
 		fmt.Println("Site:", site, "está com problemas. Status Code:", resp.StatusCode)
 	}
 
+}
+
+func exibeNomes() {
+	nomes := []string{"Douglas", "Robert", "John", "Ethan"}
+	nomes = append(nomes, "Joseph")
+	fmt.Println(nomes)
 }
