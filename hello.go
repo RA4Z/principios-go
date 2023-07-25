@@ -11,6 +11,7 @@ func main() {
 
 	exibeIntroducao()
 	exibeMenu()
+
 	comando := lerComando()
 
 	switch comando {
@@ -68,5 +69,6 @@ func lerComando() int {
 func iniciarMonitoramento() {
 	fmt.Println("Monitorando...")
 	site := "https://www.alura.com.br"
-	http.Get(site)
+	resp, _ := http.Get(site)
+	fmt.Println(resp)
 }
