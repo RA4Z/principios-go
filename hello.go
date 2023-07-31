@@ -4,8 +4,12 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"time"
 	//"reflect"
 )
+
+const monitoramentos = 3
+const delay = 5
 
 func main() {
 	exibeIntroducao()
@@ -28,24 +32,6 @@ func main() {
 			os.Exit(-1)
 		}
 	}
-
-	// if comando == 1 {
-	// 	fmt.Println("Monitorando...")
-
-	// } else if comando == 2 {
-	// 	fmt.Println("Exibindo Logs...")
-
-	// } else if comando == 0 {
-	// 	fmt.Println("Saindo do Programa...")
-
-	// } else {
-	// 	fmt.Println("Não conheço este comando")
-	// }
-
-	// fmt.Println("--------------------------------")
-	// fmt.Println("O tipo da variável nome é", reflect.TypeOf(nome))
-	// fmt.Println("O tipo da variável idade é", reflect.TypeOf(idade))
-	// fmt.Println("O tipo da variável versão é", reflect.TypeOf(versao))
 }
 
 func exibeIntroducao() {
@@ -65,6 +51,7 @@ func lerComando() int {
 	var comandoLido int
 	fmt.Scan(&comandoLido)
 	fmt.Println("O comando escolhido foi", comandoLido)
+	fmt.Println("")
 	return comandoLido
 }
 
@@ -72,13 +59,19 @@ func iniciarMonitoramento() {
 	fmt.Println("Monitorando...")
 	sites := []string{"https://www.alura.com.br", "https://www.caelum.com.br", "https://topflix.cx"}
 
-	for i, site := range sites {
-		fmt.Println("Estou passando na posição", i, "o site", site)
+	for i := 0; i < monitoramentos; i++ {
+		for i, site := range sites {
+			fmt.Println("Testando site", i, ":", site)
+			testaSite(site)
+		}
+		time.Sleep(delay * time.Second)
+		fmt.Println("")
 	}
 
-	fmt.Println(sites)
+	fmt.Println("")
+}
 
-	site := "https://www.alura.com.br"
+func testaSite(site string) {
 	resp, _ := http.Get(site)
 
 	if resp.StatusCode == 200 {
@@ -86,11 +79,4 @@ func iniciarMonitoramento() {
 	} else {
 		fmt.Println("Site:", site, "está com problemas. Status Code:", resp.StatusCode)
 	}
-
 }
-
-// func exibeNomes() {
-// 	nomes := []string{"Douglas", "Robert", "John", "Ethan"}
-// 	nomes = append(nomes, "Joseph")
-// 	fmt.Println(nomes)
-// }
