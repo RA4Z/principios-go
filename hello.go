@@ -57,8 +57,8 @@ func lerComando() int {
 
 func iniciarMonitoramento() {
 	fmt.Println("Monitorando...")
-	sites := []string{"https://www.alura.com.br", "https://www.caelum.com.br", "https://topflix.cx"}
-
+	//sites := []string{"https://www.alura.com.br", "https://www.caelum.com.br", "https://topflix.cx"}
+	sites := lerSitesDoArquivo()
 	for i := 0; i < monitoramentos; i++ {
 		for i, site := range sites {
 			fmt.Println("Testando site", i, ":", site)
@@ -79,4 +79,11 @@ func testaSite(site string) {
 	} else {
 		fmt.Println("Site:", site, "está com problemas. Status Code:", resp.StatusCode)
 	}
+}
+
+func lerSitesDoArquivo() []string {
+	var sites []string
+	arquivo, _ := os.Open("sites.txt")
+	fmt.Println(arquivo)
+	return sites
 }
